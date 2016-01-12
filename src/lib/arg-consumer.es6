@@ -77,7 +77,6 @@ class ArgConsumer {
 
     return argv
   }
-
 }
 
 module.exports = ArgConsumer
