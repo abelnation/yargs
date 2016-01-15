@@ -2,7 +2,11 @@
 const shellParse = require('shell-quote').parse
 
 function normalizeArgs (args) {
-	let result = []
+  let result = []
+
+  if (!args) {
+    return result
+  }
 
 	for (let arg of args) {
 		if (/^--/.test(arg)) {
