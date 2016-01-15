@@ -138,13 +138,18 @@ class Yargs {
     for (let key in config) {
       cmd[key] = config[key]
     }
-    cmd.context = new Yargs()
+
+    // allow passing in a pre-constructed yargs object as context
+    if (cb && cb.constructor === Yargs) {
+      cmd.context = cb
+    } else {
+      cmd.context = new Yargs()
+      if (typeof cb === 'function') {
+        cb(cmd.context)
+      }
+    }
 
     this.commands[name] = cmd
-
-    if (cb) {
-      cb(cmd.context)
-    }
 
     return this
   }
